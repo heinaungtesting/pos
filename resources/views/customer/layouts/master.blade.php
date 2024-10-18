@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Fruitables - Vegetable Website Template</title>
+    <title>OurShopping</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -17,8 +17,8 @@
 
     <!-- Icon Font Stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
@@ -49,7 +49,7 @@
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
                 <a href="index.html" class="navbar-brand">
-                    <h1 class="text-primary display-6">Fruitables</h1>
+                    <h1 class="text-primary display-6">OurShopping</h1>
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -57,39 +57,34 @@
                 </button>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="shop.html" class="nav-item nav-link">Shop</a>
-                        <a href="shop-detail.html" class="nav-item nav-link">Shop Detail</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="cart.html" class="dropdown-item">Cart</a>
-                                <a href="chackout.html" class="dropdown-item">Chackout</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link ">Contact</a>
+                        <a href="#" class="nav-item nav-link @if (Request::route()->getName()=='customerhome') active @endif">Home</a>
+                        <a href="#" class="nav-item nav-link">Shop</a>
+                        <a href="" class="nav-item nav-link">Cart</a>
+
+                        <a href="#" class="nav-item nav-link ">Contact</a>
                         <span class="nav-item nav-link ">
                             <form action="{{ route('logout') }}" method="post">@csrf
-                                <input type="submit" value="Logout" class="btn btn-success rounded mb-4">
+                                <input type="submit" value="Logout" class="btn btn-outline-success btn-sm rounded mb-4">
                             </form>
                         </span>
                     </div>
                     <div class="d-flex m-3 me-0">
-                        <button
-                            class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
-                            data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                                class="fas fa-search text-primary"></i></button>
-                        <a href="#" class="position-relative me-4 my-auto">
-                            <i class="fa fa-shopping-bag fa-2x"></i>
-                            <span
-                                class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                        <div class="form me-3 mb-2">
+                            <form action="{{route('customerhome')}}" method="get">
+                                @csrf
+                                <div class="input-group">
+                                    <input type="text" value="{{ request('key') }}" name="key" id=""
+                                        class="form-control" placeholder="Enter Search Key...">
+                                    <button type="submit" class="btn bg-dark text-white"><i
+                                            class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <a href="{{ route('customerinfo') }}" class="my-auto">
+                            <img src="{{asset(Auth::user()->profile !=null ? 'profile/'.Auth::user()->profile : 'admin/img/undraw_profile.svg')}}" class="img-profile rounded-circle mb-3 " alt="" style="width: 45px">
                         </a>
-                        <a href="{{route('customerinfo')}}" class="my-auto">
-                            <i class="fas fa-user fa-2x"></i>
-                        </a>
+
                     </div>
                 </div>
             </nav>

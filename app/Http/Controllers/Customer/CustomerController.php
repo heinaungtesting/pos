@@ -10,14 +10,36 @@ use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
 {
-    function customerhome($categoryid=null){
+    function customerhome(){
         $categories=Category::get();
+        if(request('sorting')){
+            explode(",",request('sorting'));
+
+        }
+
         $products=Product::select('products.id','products.name','products.price','products.description','products.image','categories.name as category_name',)
         ->leftJoin('categories','products.category_id','categories.id')
-        ->when($categoryid!=null,function($query)use($categoryid){
-            $query->where('products.category_id',$categoryid);
+        ->when(request('categoryid'),function($query){//search category
+            $query->where('products.category_id',request('categoryid'));
+        })->when(request('key'),function($query){//search by name
+            $query->where('products.name','like','%'.request('key').'%');
         })
-        ->orderBy('products.created_at','desc')->get();
+        ->when(request('sorting'),function($query){//sort by
+           $sortrule= explode(",",request('sorting'));
+           $sortname='products.'.$sortrule[0];//products.price,products.name,products.created_at
+           $sortby=$sortrule[1];//asc.desc
+            $query=$query->orderBy($sortname,$sortby );
+        })
+        //min=true max=true
+        ->when(request('minprice')!=null && request('maxprice')!=null, function($query) {
+            $query=$query->whereBetween('products.price',[request('minprice'),request('maxprice')]);
+        })
+        ->when(request('minprice')!=null && request('maxprice')==null, function($query) {//min=true max =false
+            $query=$query->where('products.price','>=',request('minprice'));
+        })->when(request('minprice')==null && request('maxprice')!=null, function($query) {//min=false max =true
+            $query=$query->where('products.price','<=',request('maxprice'));
+        })
+        ->paginate(4);
         return view('customer.home.list',compact('products','categories'));
     }
     function customerinfo(){
