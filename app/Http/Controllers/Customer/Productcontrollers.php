@@ -81,11 +81,31 @@ array_push($orderarr,[
        'status'=>'success'
        ],200);
     }
-    function payment(){
+    function paymentuser(){
         $payment=Payment::orderBy('created_at','desc')->get();
         $orderproduct=Session::get('tempCart');
         return view('customer.home.payment',compact('payment','orderproduct'));
     }
+function order(Request $req){
+/* $req->validate([
+'name'=>'required',
+'phone'=>'required',
+'address'=>'required',
+'paymenttype'=>'required',
+'payslipimage'=>'required',
 
+]); */
+//user order
+$order=Session::get('tempCart');
+$paymentHistoryData=[
+    'user_name'=>$req->name,
+    'phone'=>$req->phone,
+    'address'=>$req->address,
+    'payslip_image'=>$req->payslipimage,
+    'order_code'=>$req->ordercode,
+    'total_amt'=>$req->total,
+    'type'=>$req->paymenttype,
+];
+}
 
 }

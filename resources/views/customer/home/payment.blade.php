@@ -22,40 +22,55 @@
                             </div>
                             <div class="card-body">
                                 <div class="">
-                                    <form action="">
+                                    <form action="{{route('productorder')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="row mt-4">
                                             <div class="col">
-                                                <input type="text" name="" class="form-control"
+                                                <input value="{{old('name')}}" type="text" name="name" class="form-control @error('name') is-invalid
+
+                                                @enderror"
                                                     placeholder="User Name.." id="">
                                             </div>
                                             <div class="col">
-                                                <input type="text" name="" class="form-control"
+                                                <input value="{{old('phone')}}" type="text" name="phone" class="form-control @error('phone') is-invalid
+
+                                                @enderror"
                                                     placeholder="Phome Name.." id="">
                                             </div>
                                             <div class="col">
-                                                <input type="text" name="" class="form-control"
+                                                <input value="{{old('address')}}" type="text" name="address" class="form-control @error('address') is-invalid
+
+                                                @enderror"
                                                     placeholder="Address.." id="">
                                             </div>
                                         </div>
                                         <div class="row mt-4">
                                             <div class="col">
-                                                <select name="" class="form-select">
+                                                <select name="paymenttype" class="form-select @error('paymenttype') is-invalid
+
+                                                @enderror">
                                                     <option value="">Choose Payment Methods</option>
                                                     @foreach ($payment as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->type }}</option>
+                                                        <option value="{{ $item->type }}" @if (old('paymenttype')==$item->type) selected
+
+                                                        @endif>{{ $item->type }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <input type="file" name="" class="form-control" id="">
+                                                <input type="file" name="payslipimage" class="form-control @error('payslipimage') is-invalid
+
+                                                @enderror" id="">
                                             </div>
                                         </div>
                                         <div class="row mt-4">
                                             <div class="col">
+                                                <input type="hidden" name="ordercode" value="{{$orderproduct[0]['order_code']}}">
                                                 Order Code: <span
                                                     class="text-secondary fw-bold">{{ $orderproduct[0]['order_code'] }}</span>
                                             </div>
                                             <div class="col">
+                                                <input type="hidden" name="total" value="{{ $orderproduct[0]['total'] }}">
                                                 Total Amt: <span
                                                     class=" fw-bold">{{ $orderproduct[0]['total'] }}yen</span>
                                             </div>

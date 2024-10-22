@@ -14,7 +14,9 @@ Route::group(['prefix'=>'customer','middleware'=>'user'],function(){
     Route::get('cart/delete',[Productcontrollers::class,'cartdelete'])->name('cartdelete');
     Route::get('product/list',[Productcontrollers::class,'productlist'])->name('productlist');
     Route::get('cart/temp',[Productcontrollers::class,'carttemp'])->name('carttemp');
-    Route::get('payment',[Productcontrollers::class,'payment'])->name('payment');
+    Route::get('payment',[Productcontrollers::class,'paymentuser'])->name('paymentuser');
+    Route::post('order',[Productcontrollers::class,'order'])->name('productorder');
+
 
 
 
