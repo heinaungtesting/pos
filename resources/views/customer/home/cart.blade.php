@@ -243,6 +243,7 @@ function finalcalculation(){
     $('#btn-check').click(function(){
         $orderlist=[];
         $userid=$("#userid").val();
+        $totalamount=$('#finaltotal').text().replace("yen","")*1;
         $ordercode="CL-POS" + Math.floor(Math.random()* 100000000);
         $('#producttable tbody tr').each(function(index,row){
            $productid=$(row).find(".productid").val();
@@ -251,6 +252,7 @@ function finalcalculation(){
             'user_id':$userid,
             'product_id':$productid,
             'qty': $qty,
+            'total_amount': $totalamount,
             'ordercode':$ordercode
            })
     })

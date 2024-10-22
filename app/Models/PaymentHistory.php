@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentHistory extends Model
 {
-    //
+    protected $fillable=['user_name','phone','address','payslip_image','payment_method','total_amt'];
 }

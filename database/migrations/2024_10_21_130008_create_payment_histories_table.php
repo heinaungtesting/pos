@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('payment_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('');
+            $table->string('user_name');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('payslip_image');
+            $table->string('order_code');
+            $table->string('total_amt');
+
             $table->timestamps();
         });
     }

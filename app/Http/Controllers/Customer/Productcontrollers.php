@@ -68,6 +68,7 @@ array_push($orderarr,[
     'user_id'=>$item['user_id'],
     'product_id'=>$item['product_id'],
     'count'=>$item['qty'],
+    'total'=>$item['total_amount'],
     'status'=>0,
     'order_code'=>$item['ordercode'],
 
@@ -82,7 +83,8 @@ array_push($orderarr,[
     }
     function payment(){
         $payment=Payment::orderBy('created_at','desc')->get();
-        return view('customer.home.payment',compact('payment'));
+        $orderproduct=Session::get('tempCart');
+        return view('customer.home.payment',compact('payment','orderproduct'));
     }
 
 
