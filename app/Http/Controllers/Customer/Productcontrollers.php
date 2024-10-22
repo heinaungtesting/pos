@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\customer;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\PaymentHistory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -95,17 +97,45 @@ function order(Request $req){
 'payslipimage'=>'required',
 
 ]); */
-//user order
-$order=Session::get('tempCart');
+//store paysliphistory
+
 $paymentHistoryData=[
     'user_name'=>$req->name,
     'phone'=>$req->phone,
     'address'=>$req->address,
-    'payslip_image'=>$req->payslipimage,
+    'payment_method'=>$req->paymenttype,
     'order_code'=>$req->ordercode,
     'total_amt'=>$req->total,
-    'type'=>$req->paymenttype,
+
 ];
+if($req->hasFile('payslipimage')){
+    $filename=uniqid().$req->file('payslipimage')->getClientOriginalName();
+    $req->file('payslipimage')->move(public_path().'/payslip',$filename);
+    $paymentHistoryData['payslip_image']=$filename;
+}
+PaymentHistory::create($paymentHistoryData);
+//order and clear cart
+$order=Session::get('tempCart');
+
+foreach($order as $item){
+    Order::create([
+    'user_id'=>$item['user_id'],
+    'product_id'=>$item['product_id'],
+    'count'=>$item['count'],
+    'status'=>$item['status'], // 0-> pending, 1-> confirm,  2-> reject
+     'order_code'=>$item['order_code'],
+    ]);
+    Cart::where('user_id',$item['user_id'])->where('product_id',$item['product_id'])->delete();
+    return to_route('productorderlist');
+}
+}
+function orderlist(){
+    $order=Order::where('user_id',Auth::user()->id)
+    ->groupBy('order_code')
+    ->orderBy('created_at','desc')
+    ->get();
+    return view('customer.home.order',compact('order'));
+
 }
 
 }

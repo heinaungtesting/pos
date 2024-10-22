@@ -26,19 +26,19 @@
                                         @csrf
                                         <div class="row mt-4">
                                             <div class="col">
-                                                <input value="{{old('name')}}" type="text" name="name" class="form-control @error('name') is-invalid
+                                                <input value="{{Auth::user()->name}}"  type="text" name="name" class="form-control @error('user_name') is-invalid
 
                                                 @enderror"
                                                     placeholder="User Name.." id="">
                                             </div>
                                             <div class="col">
-                                                <input value="{{old('phone')}}" type="text" name="phone" class="form-control @error('phone') is-invalid
+                                                <input value="{{old('phone',Auth::user()->phone)}}" type="text" name="phone" class="form-control @error('phone') is-invalid
 
                                                 @enderror"
                                                     placeholder="Phome Name.." id="">
                                             </div>
                                             <div class="col">
-                                                <input value="{{old('address')}}" type="text" name="address" class="form-control @error('address') is-invalid
+                                                <input value="{{old('address',Auth::user()->address)}}" type="text" name="address" class="form-control @error('address') is-invalid
 
                                                 @enderror"
                                                     placeholder="Address.." id="">

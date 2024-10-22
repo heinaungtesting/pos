@@ -5,6 +5,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\OrderController;
+
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('home',[AdminController::class,'adminhome'])->name('adminhome');
     Route::group(['prefix'=>'category'],function(){
@@ -44,5 +46,8 @@ Route::group(['prefix'=>'product'],function(){
     Route::get('description/{id}',[ProductController::class,'productdescription'])->name('productdescription');
 
 
+});
+Route::group(['prefix'=>'order'],function(){
+    Route::get('list',[OrderController::class,'list'])->name('orderlist');
 });
 });

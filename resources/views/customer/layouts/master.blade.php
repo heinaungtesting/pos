@@ -83,7 +83,11 @@
                         <div class="d-flex mb-3 me-0">
                             <a href="{{route('cart')}}" class="position-relative me-4 my-auto">
                                 <i class="fa fa-shopping-bag fa-2x"></i>
-                                {{-- <span class="position-absolute bg-secondary rounded-circle d-flex align -items-center justify-content-center text-dark"></span> --}}
+
+                            </a>
+                            <a href="{{route('productorderlist')}}" class="position-relative me-4 my-auto">
+                                <i class="fa fa-list-check fa-2x"></i>
+
                             </a>
                         </div>
 

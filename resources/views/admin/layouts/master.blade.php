@@ -77,7 +77,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i><span>Order Board
+                <a class="nav-link" href="{{route('orderlist')}}"><i class="fa-solid fa-cart-shopping"></i><span>Order Board
                     </span></a>
             </li>
 

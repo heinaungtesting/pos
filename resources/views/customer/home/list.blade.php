@@ -126,7 +126,7 @@
                                 <h3>Our Products</h3>
                             </div>
                             <div class="col ">
-                                <form action="{{route('customerhome')}}" method="get">
+                                <form action="{{ route('customerhome') }}" method="get">
                                     @csrf
                                     <select name="sorting" class="w-50 d-inline" id="">
                                         <option value="name,asc">A-Z</option>
@@ -184,9 +184,10 @@
                                                 <div class="col-3">
                                                     <div class="rounded position-relative fruite-item">
                                                         <div class="fruite-img">
-                                                            <a href="{{route('productdetail',$item->id)}}"><img src="{{ asset('product/' . $item->image) }}"
-                                                                style="height: 250px" class="img-fluid w-100 rounded-top"
-                                                                alt=""></a>
+                                                            <a href="{{ route('productdetail', $item->id) }}"><img
+                                                                    src="{{ asset('product/' . $item->image) }}"
+                                                                    style="height: 250px"
+                                                                    class="img-fluid w-100 rounded-top" alt=""></a>
                                                         </div>
                                                         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                             style="top: 10px; left: 10px;">{{ $item->category_name }}</div>
@@ -197,10 +198,22 @@
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                                 <p class="text-dark fs-5 fw-bold mb-0">{{ $item->price }}
                                                                 </p>
-                                                                <a href="#"
+                                                                {{-- <a href="{{route('addtocart',$item->id)}}"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                    Add to cart</a>
+                                                                    Add to cart</a> --}}
+                                                                <form action="{{ route('addtocart') }}" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="userid"
+                                                                        value="{{ Auth::user()->id }}">
+                                                                    <input type="hidden" name="productid"
+                                                                        value="{{ $item->id }}">
+                                                                        <input type="hidden" name="qty" value="{{$item->qty}}">
+                                                                    <button type="submit"
+                                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                            class="fa fa-shopping-bag me-2 text-primary"></i>Add
+                                                                        to cart</button>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>

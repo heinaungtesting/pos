@@ -16,6 +16,7 @@ Route::group(['prefix'=>'customer','middleware'=>'user'],function(){
     Route::get('cart/temp',[Productcontrollers::class,'carttemp'])->name('carttemp');
     Route::get('payment',[Productcontrollers::class,'paymentuser'])->name('paymentuser');
     Route::post('order',[Productcontrollers::class,'order'])->name('productorder');
+    Route::get('orderlist',[Productcontrollers::class,'orderlist'])->name('productorderlist');
 
 
 
