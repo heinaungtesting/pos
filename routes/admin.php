@@ -49,5 +49,9 @@ Route::group(['prefix'=>'product'],function(){
 });
 Route::group(['prefix'=>'order'],function(){
     Route::get('list',[OrderController::class,'list'])->name('orderlist');
+    Route::get('detail/{ordercode}',[OrderController::class,'detail'])->name('orderdetail');
+    Route::get('changestatus',[OrderController::class,'changestatus'])->name('orderchangestatus');
+    Route::get('confirm',[OrderController::class,'confirm'])->name('orderconfirm');
+    Route::get('reject',[OrderController::class,'reject'])->name('orderreject');
 });
 });

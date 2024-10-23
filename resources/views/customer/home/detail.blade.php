@@ -1,375 +1,241 @@
 @extends('customer.layouts.master')
 @section('content')
-<div class="container-fluid py-5 mt-5">
-    <div class="container py-5">
-        <div class="row g-4 mb-5">
-            <div class="col-lg-8 col-xl-9">
-                <a href="{{route('customerhome')}}">Home</a><i class="mx-1 mb-4 fa-solid fa-greater-than"></i>Details
-                <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="border rounded">
-                            <a href="#">
-                                <img src="{{asset('product/'.$product->image)}}" class="img-fluid w-100 rounded" alt="Image">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <h4 class="fw-bold mb-3">{{$product->name}}</h4>
-                        <p class="mb-3">{{$product->category_name}}</p>
-                        <h5 class="fw-bold mb-3">{{$product->price}}</h5>
-                        <div class="d-flex mb-4">
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p class="mb-4">{{$product->description}}</p>
-                        <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
-                      <form action="{{route('addtocart')}}" method="post">
-                        @csrf
-                        <input type="hidden" name="userid" value="{{Auth::user()->id}}">
-                        <input type="hidden" name="productid" value="{{$product->id}}">
-                        <div class="input-group quantity mb-5" style="width: 100px;">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <input type="text" name='count' class="form-control form-control-sm text-center border-0" value="1">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                    <i class="fa fa-plus"></i>
-                                </button>
+    <div class="container-fluid py-5 mt-5">
+        <div class="container py-5">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-8 col-xl-9">
+                    <a href="{{ route('customerhome') }}">Home</a><i class="mx-1 mb-4 fa-solid fa-greater-than"></i>Details
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <div class="border rounded">
+                                <a href="#">
+                                    <img src="{{ asset('product/' . $product->image) }}" class="img-fluid w-100 rounded"
+                                        alt="Image">
+                                </a>
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                            <h4 class="fw-bold mb-3">{{ $product->name }} </h4>
+                            <span class="text-danger mb-3">{{ $product->stock }} items only left!!</span>
+                            <p class="mb-3">{{ $product->category_name }}</p>
+                            <h5 class="fw-bold mb-3">{{ $product->price }}</h5>
+                            <div class="d-flex mb-4">
+                                @php
+                                    $stars=number_format($rating);
+                                @endphp
 
-                        <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
-                    </form>
-                    </div>
-                    <div class="col-lg-12">
-                        <nav>
-                            <div class="nav nav-tabs mb-3">
-                                <button class="nav-link active border-white border-bottom-0" type="button" role="tab"
-                                    id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
-                                    aria-controls="nav-about" aria-selected="true">Description</button>
-                                <button class="nav-link border-white border-bottom-0" type="button" role="tab"
-                                    id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
-                                    aria-controls="nav-mission" aria-selected="false">Reviews</button>
+                                <span>
+                                    @for ($i=1; $i<=$stars ; $i++)
+                                <i class="fa fa-star text-secondary"></i>
+                                @endfor
+                                @for ($j=$stars+1; $j<=5;$j++)
+                                <i class="fa fa-star"></i>
+                                @endfor
+                               <span> ({{$stars}})</span>
+                                </span>
+                               <span class="ms-4 "><i class="fa-solid fa-eye"></i>{{$view}}</span>
+
+
+
                             </div>
-                        </nav>
-                        <div class="tab-content mb-5">
-                            <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                                <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.
-                                    Susp endisse ultricies nisi vel quam suscipit </p>
-                                <p>Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish filefish Antarctic
-                                    icefish goldeye aholehole trumpetfish pilot fish airbreathing catfish, electric ray sweeper.</p>
-                                <div class="px-2">
-                                    <div class="row g-4">
-                                        <div class="col-6">
-                                            <div class="row bg-light align-items-center text-center justify-content-center py-2">
-                                                <div class="col-6">
-                                                    <p class="mb-0">Weight</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="mb-0">1 kg</p>
+                            <p class="mb-4">{{ $product->description }}</p>
+                            <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder;
+                                chain pickerel hatchetfish, pencilfish snailfish</p>
+                            <form action="{{ route('addtocart') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="userid" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="productid" value="{{ $product->id }}">
+                                <div class="input-group quantity mb-5" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" name='count'
+                                        class="form-control form-control-sm text-center border-0" value="1">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button type="submit"
+                                    class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
+                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+
+                                <button type="button"
+                                    class="btn border border-secondary text-primary rounded-pill px-4 py-3 mb-4 w-50" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                        class="fa-solid fa-star me-2 text-secondary" ></i>Rate this Product</button>
+                                {{--   modal --}}
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Rate this product</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                                </form>
+                                            </div>
+                                           <form action="{{route('productrating')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="productid" value="{{$product->id}}">
+
+                                            <div class="modal-body">
+                                                <div class="rating-css">
+                                                    <div class="star-icon">
+                                                        @if ($user_rating==0)
+                                                        <input type="radio" value="1" name="productrating" checked id="rating1">
+                                                        <label for="rating1" class="fa fa-star"></label>
+                                                        <input type="radio" value="2" name="productrating" checked id="rating2">
+                                                        <label for="rating2" class="fa fa-star"></label>
+                                                        <input type="radio" value="3" name="productrating" checked id="rating3">
+                                                        <label for="rating3" class="fa fa-star"></label>
+                                                        <input type="radio" value="4" name="productrating" checked id="rating4">
+                                                        <label for="rating4" class="fa fa-star"></label>
+                                                        <input type="radio" value="5" name="productrating" checked id="rating5">
+                                                        <label for="rating5" class="fa fa-star"></label>
+                                                    @else
+                                                    @php
+                                                        $userrating=number_format($user_rating);
+                                                    @endphp
+                                                    @for ($i=1;$i<=$user_rating;$i++)
+                                                    <input type="radio" value="{{$i}}" name="productrating" checked id="rating{{$i}}">
+                                                    <label for="rating{{$i}}" class="fa fa-star"></label>
+
+                                                    @endfor
+                                                    @for ($j=$user_rating+1;$j<=5;$j++)
+                                                    <input type="radio" value="{{$j}}" name="productrating" checked id="rating{{$j}}">
+                                                    <label for="rating{{$j}}" class="fa fa-star"></label>
+
+                                                    @endfor
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row text-center align-items-center justify-content-center py-2">
-                                                <div class="col-6">
-                                                    <p class="mb-0">Country of Origin</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="mb-0">Agro Farm</p>
-                                                </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Rate</button>
                                             </div>
-                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
-                                                <div class="col-6">
-                                                    <p class="mb-0">Quality</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="mb-0">Organic</p>
-                                                </div>
-                                            </div>
-                                            <div class="row text-center align-items-center justify-content-center py-2">
-                                                <div class="col-6">
-                                                    <p class="mb-0">Сheck</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="mb-0">Healthy</p>
-                                                </div>
-                                            </div>
-                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
-                                                <div class="col-6">
-                                                    <p class="mb-0">Min Weight</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="mb-0">250 Kg</p>
-                                                </div>
-                                            </div>
+                                           </form>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
-                                <div class="d-flex">
-                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                    <div class="">
-                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                        <div class="d-flex justify-content-between">
-                                            <h5>Jason Smith</h5>
-                                            <div class="d-flex mb-3">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
+
+
+
+                        </div>
+                        <div class="col-lg-12">
+                            <nav>
+                                <div class="nav nav-tabs mb-3">
+                                    <button class="nav-link active border-white border-bottom-0" type="button"
+                                        role="tab" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
+                                        aria-controls="nav-about" aria-selected="true">Description</button>
+                                    <button class="nav-link border-white border-bottom-0" type="button" role="tab"
+                                        id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
+                                        aria-controls="nav-mission" aria-selected="false">Comments <span
+                                            class="btn btn-sm border border-danger">{{ count($comment) }}</span></button>
+                                </div>
+                            </nav>
+                            <div class="tab-content mb-5">
+                                <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                    <p>{{ $product->description }} </p>
+
+
+                                </div>
+                                <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
+
+                                    @foreach ($comment as $item)
+                                        <div class="d-flex">
+                                            <img src="{{ asset($item->user_profile != null ? 'profile/' . $item->user_profile : 'admin/img/undraw_profile.svg') }}"
+                                                class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;"
+                                                alt="">
+                                            <div class="">
+                                                <p class="" style="font-size: 14px;">
+                                                    {{ $item->created_at->format('j-F-Y h:m') }}</p>
+                                                <div class="d-flex justify-content-between">
+                                                    <h5>{{ $item->user_name }}</h5>
+                                                  @if ($item->user_id==Auth::user()->id)
+                                                  <a href="{{route('deletecomment',$item->id)}}" class="btn btn-sm btn-outline-danger ms-3"><i class="fa-solid fa-trash"></i></a>
+
+                                                  @endif
+
+                                                </div>
+                                                <p>{{ $item->message }} </p>
                                             </div>
                                         </div>
-                                        <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
-                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                                    </div>
+                                    @endforeach
                                 </div>
-                                <div class="d-flex">
-                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                    <div class="">
-                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                        <div class="d-flex justify-content-between">
-                                            <h5>Sam Peters</h5>
-                                            <div class="d-flex mb-3">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
-                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="nav-vision" role="tabpanel">
-                                <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                                    amet diam et eos labore. 3</p>
-                                <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.
-                                    Clita erat ipsum et lorem et sit</p>
-                            </div>
-                        </div>
-                    </div>
-                    <form action="#">
-                        <h4 class="mb-5 fw-bold">Leave a Reply</h4>
-                        <div class="row g-4">
-                            <div class="col-lg-6">
-                                <div class="border-bottom rounded">
-                                    <input type="text" class="form-control border-0 me-4" placeholder="Yur Name *">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="border-bottom rounded">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email *">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="border-bottom rounded my-4">
-                                    <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="d-flex justify-content-between py-3 mb-5">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-3">Please rate:</p>
-                                        <div class="d-flex align-items-center" style="font-size: 12px;">
-                                            <i class="fa fa-star text-muted"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
+                                <div class="tab-pane" id="nav-vision" role="tabpanel">
+                                    <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor
+                                        sit. Aliqu diam
+                                        amet diam et eos labore. 3</p>
+                                    <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos
+                                        labore.
+                                        Clita erat ipsum et lorem et sit</p>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-4 col-xl-3">
-                <div class="row g-4 fruite">
-                    <div class="col-lg-12">
-                        <div class="input-group w-100 mx-auto d-flex mb-4">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                        </div>
-                        <div class="mb-4">
-                            <h4>Categories</h4>
-                            <ul class="list-unstyled fruite-categorie">
-                                <li>
-                                    <div class="d-flex justify-content-between fruite-name">
-                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
-                                        <span>(3)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex justify-content-between fruite-name">
-                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Oranges</a>
-                                        <span>(5)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex justify-content-between fruite-name">
-                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Strawbery</a>
-                                        <span>(2)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex justify-content-between fruite-name">
-                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Banana</a>
-                                        <span>(8)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex justify-content-between fruite-name">
-                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Pumpkin</a>
-                                        <span>(5)</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                        <form action="{{ route('productcomment') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="productid" value="{{ $product->id }}">
+                            <h4 class="mb-5 fw-bold">Leave a Comment</h4>
 
-                </div>
-            </div>
-        </div>
-       @if (count($productlist)!=0)
-       <h1 class="fw-bold mb-0">Related products</h1>
-       @endif
-        <div class="vesitable">
-            <div class="owl-carousel vegetable-carousel justify-content-center">
-               @foreach ($productlist as $item)
-             @if ($product->id!=$item->id)
-             <div class="border border-primary rounded position-relative vesitable-item">
-                <div class="vesitable-img">
-                    <img src="{{asset('product/'.$item->image)}}" style="height:250px" class="img-fluid w-75 rounded-top" alt="">
-                </div>
-                <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">{{$item->category_name}}</div>
-                <div class="p-4 pb-0 rounded-bottom">
-                    <h4>{{$item->name}}</h4>
-                    <p>{{Str::words($item->description,10,'...')}}</p>
-                    <div class="d-flex justify-content-between flex-lg-wrap">
-                        <p class="text-dark fs-5 fw-bold">{{$item->price}}</p>
-                        <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                            <div class="row g-1">
+
+                                <div class="col-lg-12">
+                                    <div class="border-bottom rounded ">
+                                        <textarea name="comment" id="" class="form-control border-0 shadow" cols="30" rows="8"
+                                            placeholder="Your Review *" spellcheck="false"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="d-flex justify-content-between py-3 mb-5">
+                                        <button type="submit"
+                                            class="btn border border-secondary text-primary rounded-pill px-4 py-3"><i
+                                                class="fa fa-shopping-bag text-bg-primary"></i> Post Comment</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
-             @endif
 
-
-               @endforeach
             </div>
-        </div>
-    </div>
-</div>
-<!-- Single Product End -->
-
-
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
-    <div class="container py-5">
-        <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
-            <div class="row g-4">
-                <div class="col-lg-3">
-                    <a href="#">
-                        <h1 class="text-primary mb-0">Fruitables</h1>
-                        <p class="text-secondary mb-0">Fresh products</p>
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <div class="position-relative mx-auto">
-                        <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Your Email">
-                        <button type="submit" class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0;">Subscribe Now</button>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="d-flex justify-content-end pt-3">
-                        <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-item">
-                    <h4 class="text-light mb-3">Why People Like us!</h4>
-                    <p class="mb-4">typesetting, remaining essentially unchanged. It was
-                        popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
-                    <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="d-flex flex-column text-start footer-item">
-                    <h4 class="text-light mb-3">Shop Info</h4>
-                    <a class="btn-link" href="">About Us</a>
-                    <a class="btn-link" href="">Contact Us</a>
-                    <a class="btn-link" href="">Privacy Policy</a>
-                    <a class="btn-link" href="">Terms & Condition</a>
-                    <a class="btn-link" href="">Return Policy</a>
-                    <a class="btn-link" href="">FAQs & Help</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="d-flex flex-column text-start footer-item">
-                    <h4 class="text-light mb-3">Account</h4>
-                    <a class="btn-link" href="">My Account</a>
-                    <a class="btn-link" href="">Shop details</a>
-                    <a class="btn-link" href="">Shopping Cart</a>
-                    <a class="btn-link" href="">Wishlist</a>
-                    <a class="btn-link" href="">Order History</a>
-                    <a class="btn-link" href="">International Orders</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-item">
-                    <h4 class="text-light mb-3">Contact</h4>
-                    <p>Address: 1429 Netus Rd, NY 48247</p>
-                    <p>Email: Example@gmail.com</p>
-                    <p>Phone: +0123 4567 8910</p>
-                    <p>Payment Accepted</p>
-                    <img src="img/payment.png" class="img-fluid" alt="">
+            @if (count($productlist) != 0)
+                <h1 class="fw-bold mb-0">Related products</h1>
+            @endif
+            <div class="vesitable">
+                <div class="owl-carousel vegetable-carousel justify-content-center">
+                    @foreach ($productlist as $item)
+                        @if ($product->id != $item->id)
+                            <div class="border border-primary rounded position-relative vesitable-item">
+                                <div class="vesitable-img">
+                                    <img src="{{ asset('product/' . $item->image) }}" style="height:250px"
+                                        class="img-fluid w-75 rounded-top" alt="">
+                                </div>
+                                <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
+                                    style="top: 10px; right: 10px;">{{ $item->category_name }}</div>
+                                <div class="p-4 pb-0 rounded-bottom">
+                                    <h4>{{ $item->name }}</h4>
+                                    <p>{{ Str::words($item->description, 10, '...') }}</p>
+                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                        <p class="text-dark fs-5 fw-bold">{{ $item->price }}</p>
+                                        <a href="#"
+                                            class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
+                                                class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Footer End -->
-
-<!-- Copyright Start -->
-<div class="container-fluid copyright bg-dark py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
-            </div>
-            <div class="col-md-6 my-auto text-center text-md-end text-white">
-                <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Copyright End -->
-
-
-
-<!-- Back to Top -->
-<a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
-
-
-
-
+    <!-- Single Product End -->
 @endsection

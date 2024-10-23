@@ -31,6 +31,8 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('customer/css/style.css') }}" rel="stylesheet">
+    {{-- ratingcss --}}
+    <link rel="stylesheet" href="{{asset('customer/css/custom.css')}}">
 </head>
 
 <body>
@@ -57,8 +59,8 @@
                 </button>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="#" class="nav-item nav-link @if (Request::route()->getName()=='customerhome') active @endif">Home</a>
-                        <a href="#" class="nav-item nav-link">Shop</a>
+                        <a href="{{route('customerhome')}}" class="nav-item nav-link @if (Request::route()->getName()=='customerhome') active @endif">Home</a>
+
                         <a href="" class="nav-item nav-link">Cart</a>
 
                         <a href="#" class="nav-item nav-link ">Contact</a>

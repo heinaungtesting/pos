@@ -17,6 +17,14 @@ Route::group(['prefix'=>'customer','middleware'=>'user'],function(){
     Route::get('payment',[Productcontrollers::class,'paymentuser'])->name('paymentuser');
     Route::post('order',[Productcontrollers::class,'order'])->name('productorder');
     Route::get('orderlist',[Productcontrollers::class,'orderlist'])->name('productorderlist');
+    Route::post('comment',[Productcontrollers::class,'comment'])->name('productcomment');
+    Route::get('comment/delete/{id}',[Productcontrollers::class,'deletecomment'])->name('deletecomment');
+    Route::post('rating',[Productcontrollers::class,'rating'])->name('productrating');
+
+
+
+
+
 
 
 

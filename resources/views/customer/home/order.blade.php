@@ -24,7 +24,7 @@
                               @if ($item['status']==0)
                               <span class="btn btn-warning btn-sm rounded shadow-sm">Pending</span>
                               @elseif ($item['status']==1)
-                              <span class="btn btn-success btn-sm rounded shadow-sm">Success</span>
+                              <span class="btn btn-success btn-sm rounded shadow-sm">Accept</span><span class="ms-3 text-danger"><i class="fa-regular fa-clock"></i> Waiting 3 days</span>
                               @else
                               <span class="btn btn-danger btn-sm rounded shadow-sm">Reject</span>
 

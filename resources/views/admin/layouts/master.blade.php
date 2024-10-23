@@ -37,7 +37,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Code Lab Studio</div>
+                <div class="sidebar-brand-text mx-3">HeinTesting</div>
             </a>
 
             <!-- Divider -->
@@ -52,9 +52,7 @@
                 <a class="nav-link" href="{{route('categorylist')}}"><i class="fa-solid fa-circle-plus"></i></i><span>Category </span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-sitemap"></i></i><span>Add Category </span></a>
-            </li>
+
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('productlist')}}"><i class="fa-solid fa-layer-group"></i><span>Product Details
@@ -81,9 +79,7 @@
                     </span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i></i><span>Setting </span></a>
-            </li>
+
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('changepasswordpage')}}"><i class="fa-solid fa-lock"></i></i></i><span>Change Password
@@ -198,7 +194,7 @@
                 </div>
 
                 <!-- Bootstrap core JavaScript-->
-                <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
                 <!-- Core plugin JavaScript-->
@@ -208,11 +204,13 @@
                 <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
                 <!-- Page level plugins -->
-                <script src="{{ asset('admin/vendor/chart.js/Chart.min.js') }}"></script>
-
+                {{-- <script src="{{ asset('admin/vendor/chart.js/Chart.min.js') }}"></script>
+ --}}
                 <!-- Page level custom scripts -->
-                <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
-                <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
+                {{-- <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script> --}}
+                {{-- <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script> --}}
+
+               @yield('scriptscr')
                 <script>
 
 function loadFile(event) {
