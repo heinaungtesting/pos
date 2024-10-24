@@ -33,6 +33,7 @@
     <link href="{{ asset('customer/css/style.css') }}" rel="stylesheet">
     {{-- ratingcss --}}
     <link rel="stylesheet" href="{{asset('customer/css/custom.css')}}">
+    
 </head>
 
 <body>
@@ -63,7 +64,7 @@
 
                         <a href="" class="nav-item nav-link">Cart</a>
 
-                        <a href="#" class="nav-item nav-link ">Contact</a>
+                        <a href="{{route('contact')}}" class="nav-item nav-link ">Contact</a>
                         <span class="nav-item nav-link ">
                             <form action="{{ route('logout') }}" method="post">@csrf
                                 <input type="submit" value="Logout" class="btn btn-outline-success btn-sm rounded mb-4">

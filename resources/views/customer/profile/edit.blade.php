@@ -1,6 +1,6 @@
 @extends('customer.layouts.master')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 200px">
         <div class="card shadow mb-4 col">
             <div class="card-header py-3">
                 <div class="">

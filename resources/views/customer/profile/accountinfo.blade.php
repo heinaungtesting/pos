@@ -40,8 +40,8 @@
                 <div class="col h5 text-danger">{{Auth::user()->role}}</div>
 
             </div>
-            <a href="{{route('changepasswordpage')}}" class="btn bg-dark text-white btn-sm mt-3 rounded shadow-sm">ChangePassword</a>
-            <a href="{{route('editprofile')}}" class="btn bg-primary text-white btn-sm mt-3 rounded shadow-sm">UpdateProfile</a>
+            <a href="{{route('updateuserpassword',Auth::user()->id)}}" class="btn bg-dark text-white btn-sm mt-3 rounded shadow-sm">ChangePassword</a>
+            <a href="{{route('updateuserinfo',Auth::user()->id)}}" class="btn bg-primary text-white btn-sm mt-3 rounded shadow-sm">UpdateProfile</a>
         </div>
     </div>
 </div>

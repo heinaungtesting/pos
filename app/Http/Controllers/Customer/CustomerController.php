@@ -39,13 +39,13 @@ class CustomerController extends Controller
         })->when(request('minprice')==null && request('maxprice')!=null, function($query) {//min=false max =true
             $query=$query->where('products.price','<=',request('maxprice'));
         })
-        ->paginate(4);
+        ->paginate(8);
         return view('customer.home.list',compact('products','categories'));
     }
     function customerinfo(){
         return view('customer.profile.accountinfo');
     }
-    function updateuserinfo($id){
+    function updateinfo($id){
 
         $userinfo=User::where('id',$id)->get();
         return view('customer.profile.edit',compact('userinfo'));
