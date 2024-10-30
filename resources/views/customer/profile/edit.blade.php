@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('updateprofile') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('edituserinfo') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="row ">

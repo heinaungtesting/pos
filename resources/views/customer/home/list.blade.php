@@ -116,8 +116,9 @@
 
 
     <!-- Fruits Shop Start-->
-    <div class="container-fluid fruite py-5">
-        <div class="container py-5">
+    <div class="container-fluid fruite py-5" style="background: rgb(224,244,240);
+background: linear-gradient(135deg, rgba(224,244,240,1) 19%, rgba(233,230,255,1) 59%, rgba(224,244,240,1) 79%); border: 4px">
+        <div class="container-fluid w-100 py-5">
             <div class="tab-class text-center">
                 <div class="row g-4">
                     <div class="col-lg-4 text-start">
@@ -160,11 +161,14 @@
                                     <span class="text-dark" style="width: 130px;">All Products</span>
                                 </a>
                             </li>
+
                             @foreach ($categories as $item)
                                 <li class="nav-item">
-                                    <a class="d-flex py-2 m-2 bg-light rounded-pill @if (request('categoryid') == $item->id) active @endif"
+                                    <a class="d-flex py-2 m-2 bg-light rounded-pill @if (request('categoryid') == $item->id) active shadow-lg @endif"
                                         href="{{ url('customer/home?categoryid=' . $item->id) }}">
-                                        <span class="text-dark" style="width: 130px;">{{ $item->name }}</span>
+                                        <span class="text-dark
+
+                                       " style="width: 130px;">{{ $item->name }}</span>
                                     </a>
                                 </li>
                             @endforeach
@@ -196,7 +200,7 @@
                                                             <h4>{{ $item->name }}</h4>
                                                             <p>{{ Str::words($item->description, 10, ',,,') }}</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">{{ $item->price }}
+                                                                <p class="text-dark fs-5 fw-bold mb-0">{{ $item->price }}¥
                                                                 </p>
                                                                 {{-- <a href="{{route('addtocart',$item->id)}}"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -231,8 +235,12 @@
 
                 </div>
             </div>
-            <div class="d-flex justify-content-end pagination"> {{$products->links()}}</div>
                 </div>
+                <div class="d-flex justify-content-end"> {{$products->links()}}</div>
+
+            </div>
+
+    </div>
             <!-- Fruits Shop End-->
 
 

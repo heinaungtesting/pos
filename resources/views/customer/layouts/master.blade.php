@@ -33,7 +33,7 @@
     <link href="{{ asset('customer/css/style.css') }}" rel="stylesheet">
     {{-- ratingcss --}}
     <link rel="stylesheet" href="{{asset('customer/css/custom.css')}}">
-    
+
 </head>
 
 <body>
@@ -229,6 +229,22 @@
     <!-- Template Javascript -->
     <script src="{{ asset('customer/js/main.js') }}"></script>
     @yield('js-section')
+    <script>
+
+        function loadFile(event) {
+            var reader = new FileReader();
+
+            // Set the onload function after calling readAsDataURL
+            reader.onload = function() {
+                var output = document.getElementById('output');
+                output.src = reader.result;
+            };
+
+            // Call readAsDataURL outside the onload handler
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+                        </script>
 </body>
 
 </html>

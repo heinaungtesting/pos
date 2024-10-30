@@ -7,6 +7,9 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerController extends Controller
 {
@@ -52,11 +55,74 @@ class CustomerController extends Controller
 
 
 
+
     }
+    function editinfo(Request $req){
+        $this->checkinfo($req);
+        $data=$this->data($req);
+        if($req->hasFile('image')){
+            if(Auth::user()->profile!=null){
+                if(file_exists(public_path('/profile/'.Auth::user()->profile))){
+                    unlink(public_path('/profile/'.Auth::user()->profile));
+                }
+
+            }
+            $filename=uniqid().$req->file('image')->getClientOriginalName();
+            $req->file('image')->move(public_path().'/profile/',$filename);
+            $data['profile']=$filename;
+
+
+        }else{
+            $data['profile']=Auth::user()->profile;
+        }
+        User::where('id',Auth::user()->id)->update($data);
+Alert::success('Profile Changed','Profile Changed Successfully');
+return to_route('customerhome');
+
+    }
+    function updateuserpassword(){
+
+        return view('customer.profile.changepasswordpage');
+    }
+    function edit(Request $req){
+$this->checkuser($req);
+$currentpassword=Auth::user()->password;
+if(Hash::check($req->oldpassword,$currentpassword)){
+User::where('id',Auth::user()->id)->update(['password'=>Hash::make($req->newpassword)]);
+Alert::success('Password Change','Password Change successfully');
+return to_route('customerhome');
+
+}
+
+
+    }
+
+
     private function checkuser($req){
         $req->validate([
+'newpassword'=>'required',
+'oldpassword'=>'required',
+'conpassword'=>'required|same:newpassword|min:6',
 
         ]);
 
+
+    }
+    private function checkinfo($req){
+        $req->validate([
+            'image'=>'required',
+            'name'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            'address'=>'required'
+        ]);
+    }
+    private function data($req){
+        return [
+            'name'=>$req->name,
+            'phone'=>$req->phone,
+            'email'=>$req->email,
+            'address'=>$req->address,
+        ];
     }
 }

@@ -145,7 +145,7 @@ private function procheck($req){
         'name' => 'required',
         'email' => 'required|unique:users,email,'.Auth::user()->id,
         'phone'=>'required|unique:users,phone,'.Auth::user()->id,
-        'image'=>'mimes:png,jpg,jpeg,svg|file'
+        'image'=>'mimes:png,jpg,jpeg,svg,webp|file'
 
     ]);
 }

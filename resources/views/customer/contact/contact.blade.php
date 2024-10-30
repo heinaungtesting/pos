@@ -33,12 +33,12 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12 form-group">
-                    <textarea class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Write your message"></textarea>
+                    <textarea class="form-control mt-2" name="message" id="message" cols="30" rows="7" placeholder="Write your message"></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <input type="submit" value="Send Message" class="btn btn-outline-primary rounded-0 py-2 px-4">
+                    <input type="submit" value="Send Message" style="margin-top: 200px" class=" float-end btn btn-lg btn-outline-primary rounded-1 py-2 px-4">
                   <span class="submitting"></span>
                   </div>
                 </div>
