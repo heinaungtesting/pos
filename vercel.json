@@ -15,6 +15,6 @@
   "env": {
     "APP_ENV": "production",
     "APP_KEY": "@laravel-app-key",
-    "DB_CONNECTION": "mysql" // Ensure your DB is correctly configured
+    "DB_CONNECTION": "mysql"
   }
 }
