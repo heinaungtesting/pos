@@ -47,7 +47,7 @@
                        <div class="row">
                         <div class="col mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Price</label>
-                            <input value="{{old('price')}}$" type="text" name="price" class="form-control @error('price') is-invalid @enderror"
+                            <input value="{{old('price')}}" type="text" name="price" class="form-control @error('price') is-invalid @enderror"
                                 id="exampleFormControlInput1" placeholder="Enter Price">
                             @error('price')
                                 <small class="invalid-feedback">{{ $message }}</small>

@@ -2,8 +2,9 @@
 use Illuminate\Support\Facades\Route;
 
 
-use App\Http\Controllers\customer\Productcontrollers;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\customer\Productcontrollers;
 
 
 Route::group(['prefix'=>'customer','middleware'=>'user'],function(){
@@ -20,6 +21,8 @@ Route::group(['prefix'=>'customer','middleware'=>'user'],function(){
     Route::post('comment',[Productcontrollers::class,'comment'])->name('productcomment');
     Route::get('comment/delete/{id}',[Productcontrollers::class,'deletecomment'])->name('deletecomment');
     Route::post('rating',[Productcontrollers::class,'rating'])->name('productrating');
+    Route::get('contact',[ContactController::class,'contact'])->name('contact');
+    Route::post('contactsent',[ContactController::class,'contactsent'])->name('contactsent');
 
 
 
@@ -33,10 +36,10 @@ Route::group(['prefix'=>'customer','middleware'=>'user'],function(){
 
     Route::group(['prefix'=>'profile'],function(){
         Route::get('customerinfo',[CustomerController::class,'customerinfo'])->name('customerinfo');
-        Route::get('updatepassword/{id}',[CustomerController::class,'upatepasswordpage'])->name('updateuserpassword');
+        Route::get('updatepassword',[CustomerController::class,'updateuserpassword'])->name('updateuserpassword');
         Route::post('updatepassword/{id}',[CustomerController::class,'edit'])->name('edituserpassword');
-        Route::get('updateinfo/{id}',[CustomerController::class,'upateinfo'])->name('updateuserinfo');
-        Route::post('updateinfo/{id}',[CustomerController::class,'editinfo'])->name('edituserinfo');
+        Route::get('updateinfo/{id}',[CustomerController::class,'updateinfo'])->name('updateuserinfo');
+        Route::post('updateinfo',[CustomerController::class,'editinfo'])->name('edituserinfo');
 
     });
 });

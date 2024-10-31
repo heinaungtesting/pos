@@ -10,6 +10,7 @@
                     <div class="card-body">
                         <form action="{{route('changepassword')}}" method="post" class="p-3 rounded">
                             @csrf
+                            <input type="hidden" name="userid" value="{{Auth::user()->id}}">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Old Password</label>
                                 <input type="password" name="oldpassword"

@@ -165,7 +165,7 @@ class Productcontrollers extends Controller
             'message' => $req->comment
 
         ]);
-        $this->actionlog($req->userid, $req->productid,'comment');
+        $this->actionlog(Auth::user()->id, $req->productid,'comment');
 
         return back();
     }

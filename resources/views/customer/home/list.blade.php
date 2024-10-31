@@ -116,8 +116,9 @@
 
 
     <!-- Fruits Shop Start-->
-    <div class="container-fluid fruite py-5">
-        <div class="container py-5">
+    <div class="container-fluid fruite py-5" style="background: rgb(224,244,240);
+background: linear-gradient(135deg, rgba(224,244,240,1) 19%, rgba(233,230,255,1) 59%, rgba(224,244,240,1) 79%); border: 4px">
+        <div class="container-fluid w-100 py-5">
             <div class="tab-class text-center">
                 <div class="row g-4">
                     <div class="col-lg-4 text-start">
@@ -160,11 +161,14 @@
                                     <span class="text-dark" style="width: 130px;">All Products</span>
                                 </a>
                             </li>
+
                             @foreach ($categories as $item)
                                 <li class="nav-item">
-                                    <a class="d-flex py-2 m-2 bg-light rounded-pill @if (request('categoryid') == $item->id) active @endif"
+                                    <a class="d-flex py-2 m-2 bg-light rounded-pill @if (request('categoryid') == $item->id) active shadow-lg @endif"
                                         href="{{ url('customer/home?categoryid=' . $item->id) }}">
-                                        <span class="text-dark" style="width: 130px;">{{ $item->name }}</span>
+                                        <span class="text-dark
+
+                                       " style="width: 130px;">{{ $item->name }}</span>
                                     </a>
                                 </li>
                             @endforeach
@@ -196,7 +200,7 @@
                                                             <h4>{{ $item->name }}</h4>
                                                             <p>{{ Str::words($item->description, 10, ',,,') }}</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">{{ $item->price }}
+                                                                <p class="text-dark fs-5 fw-bold mb-0">{{ $item->price }}¥
                                                                 </p>
                                                                 {{-- <a href="{{route('addtocart',$item->id)}}"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -221,15 +225,22 @@
                                             @endforeach
 
                                         </div>
-                                        <span class="float-end">{{ $products->links() }}</span>
+
                                     </div>
-                                </div>
+
                             </div>
 
                         </div>
                     </div>
+
                 </div>
             </div>
+                </div>
+                <div class="d-flex justify-content-end"> {{$products->links()}}</div>
+
+            </div>
+
+    </div>
             <!-- Fruits Shop End-->
 
 
@@ -283,7 +294,7 @@
 
 
             <!-- Vesitable Shop Start-->
-            <div class="container-fluid vesitable py-5">
+           {{--  <div class="container-fluid vesitable py-5">
                 <div class="container py-5">
                     <h1 class="mb-0">Fresh Organic Vegetables</h1>
                     <div class="owl-carousel vegetable-carousel justify-content-center">
@@ -426,12 +437,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Vesitable Shop End -->
 
 
             <!-- Banner Section Start-->
-            <div class="container-fluid banner bg-secondary my-5">
+           {{--  <div class="container-fluid banner bg-secondary my-5">
                 <div class="container py-5">
                     <div class="row g-4 align-items-center">
                         <div class="col-lg-6">
@@ -459,12 +470,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Banner Section End -->
 
 
             <!-- Bestsaler Product Start -->
-            <div class="container-fluid py-5">
+         {{--    <div class="container-fluid py-5">
                 <div class="container py-5">
                     <div class="text-center mx-auto mb-5" style="max-width: 700px;">
                         <h1 class="display-4">Bestseller Products</h1>
@@ -694,12 +705,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Bestsaler Product End -->
 
 
             <!-- Fact Start -->
-            <div class="container-fluid py-5">
+            {{-- <div class="container-fluid py-5">
                 <div class="container">
                     <div class="bg-light p-5 rounded">
                         <div class="row g-4 justify-content-center">
@@ -734,12 +745,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Fact Start -->
 
 
             <!-- Tastimonial Start -->
-            <div class="container-fluid testimonial py-5">
+            {{-- <div class="container-fluid testimonial py-5">
                 <div class="container py-5">
                     <div class="testimonial-header text-center">
                         <h4 class="text-primary">Our Testimonial</h4>
@@ -832,6 +843,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Tastimonial End -->
         @endsection
