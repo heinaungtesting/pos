@@ -1,0 +1,6 @@
+[build]
+  command = "your-build-command"
+  publish = "your-publish-directory"
+
+[build.environment]
+  PHP_VERSION = "8.2"
