@@ -1,53 +1,41 @@
 [
 build
 ]
-  # Default build command (adjust based on your project)
-  command = "npm run build"  # or "yarn build"
-  
-  # Directory with the built files that will be deployed
-  publish = "dist"          # or "build", "public", etc.
-  
-  # Base directory where build command runs
-  base = "/"
+command = "npm run build"
+publish = "dist"
+base = "/"
 
-# Build environment settings
 [
 build.environment
 ]
-  # Set Node.js version if needed
-  NODE_VERSION = "18"
-  # Set PHP version if needed for build process
-  PHP_VERSION = "8.2"
+NODE_VERSION = "18"
+PHP_VERSION = "8.2"
 
-# Production context
 [
 context.production
 ]
-  command = "npm run build"
-  environment = { NODE_ENV = "production" }
+command = "npm run build"
+environment = { NODE_ENV = "production" }
 
-# Development context (for branch deploys)
 [
 context.development
 ]
-  command = "npm run build:dev"
-  environment = { NODE_ENV = "development" }
+command = "npm run build:dev"
+environment = { NODE_ENV = "development" }
 
-# For handling redirects
 [[
 redirects
 ]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
 
-# Headers for security
 [[
 headers
 ]]
-  for = "/*"
-  [
+for = "/*"
+[
 headers.values
 ]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
