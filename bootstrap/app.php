@@ -15,10 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: '*');
        $middleware->alias([
         'admin'=>AdminMiddleware::class,
         'user'=>UserMiddleware::class,
-        'superadmin'=>supeadminmw::class
+        'superadmin'=>supeadminmw::class,
+                          
        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
