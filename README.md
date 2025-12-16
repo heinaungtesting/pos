@@ -1,66 +1,331 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# POS System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Point of Sale (POS) system built with Laravel framework for managing sales, inventory, and customer orders.
 
-## About Laravel
+## About This Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This is a web-based Point of Sale application designed to help businesses manage their sales operations, inventory, and customer transactions efficiently. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Framework:** Laravel 11.9 (PHP 8.2+)
+- **Authentication:** Laravel Breeze, Sanctum, Socialite
+- **Frontend:** Blade templating engine, Tailwind CSS
+- **Build Tool:** Vite
+- **Notifications:** RealRashid SweetAlert
+- **Debug Tool:** Laravel Debugbar (Development)
+- **Package Manager:** Composer, NPM
 
-## Learning Laravel
+## System Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- MySQL/PostgreSQL/SQLite database
+- Web server (Apache/Nginx)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Key Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🔐 Authentication & Authorization
 
-## Laravel Sponsors
+- **Laravel Breeze** - Authentication scaffolding with login, registration, password reset
+- **Laravel Sanctum** - API token authentication
+- **Social Login (Laravel Socialite)** - Login with Google, GitHub, and other providers
+- **Role-Based Access Control** - Three user roles: 
+  - **Super Admin** - Full system access including admin management
+  - **Admin** - Category, product, order, and payment management
+  - **User/Customer** - Shopping and order placement
+- **Middleware Protection** - Route-level access control (`admin`, `superadmin`, `user` middleware)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 👥 User Management (Super Admin Only)
 
-### Premium Partners
+- Create new admin accounts
+- View admin list
+- Delete admin accounts
+- View user/customer list
+- Delete user accounts
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 📦 Product Management (Admin)
 
-## Contributing
+- Create new products
+- List all products with pagination
+- Update product details
+- Delete products
+- View product descriptions
+- Product images upload
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 📂 Category Management (Admin)
 
-## Code of Conduct
+- Create categories
+- List all categories
+- Update categories
+- Delete categories
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 💳 Payment Method Management (Admin)
 
-## Security Vulnerabilities
+- Add payment methods
+- List payment methods
+- Update payment methods
+- Delete payment methods
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 🛒 Customer Shopping Features
+
+- Browse products by category
+- View product details
+- Add products to cart
+- View shopping cart
+- Remove items from cart
+- Place orders
+- View order list
+- Product rating system
+- Product comment/review system
+- Delete own comments
+
+### 📦 Order Management
+
+- **Admin Side:**
+  - View all orders
+  - View order details
+  - Change order status
+  - Confirm orders
+  - Reject orders
+  
+- **Customer Side:**
+  - View order history
+  - Track order status
+
+### 👤 Profile Management
+
+- **Admin Profile:**
+  - View profile
+  - Edit profile information
+  - Change password
+  
+- **Customer Profile:**
+  - View customer information
+  - Update personal information
+  - Change password
+
+### 📞 Contact System
+
+- Contact form for customers
+- Submit contact messages
+
+### 🔌 API Endpoints
+
+- User authentication (Sanctum protected)
+- Product list API
+- Delete API
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/heinaungtesting/pos.git
+cd pos
+```
+
+### 2. Install Dependencies
+
+```bash
+# Install PHP dependencies
+composer install
+
+# Install NPM dependencies
+npm install
+```
+
+### 3. Environment Configuration
+
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+```
+
+### 4. Database Configuration
+
+Edit `.env` file and configure your database: 
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=pos_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+### 5. Configure Social Login
+
+Set up social authentication providers in `.env`:
+
+```env
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_REDIRECT_URL=http://localhost:8000/auth/google/callback
+
+# GitHub OAuth (or other providers)
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+GITHUB_REDIRECT_URL=http://localhost:8000/auth/github/callback
+```
+
+### 6. Run Migrations
+
+```bash
+# Run database migrations
+php artisan migrate
+
+# (Optional) Seed database with sample data
+php artisan db:seed
+```
+
+### 7. Build Assets
+
+```bash
+# Build for production
+npm run build
+
+# Or run development server with hot reload
+npm run dev
+```
+
+### 8. Start the Application
+
+```bash
+# Start Laravel development server
+php artisan serve
+```
+
+The application will be available at `http://localhost:8000`
+
+## Database Structure
+
+The system includes the following tables:
+
+- **users** - User accounts and roles
+- **products** - Product catalog
+- **categories** - Product categories
+- **orders** - Customer orders
+- **carts** - Shopping cart items
+- **payments** - Payment methods
+- **payment_histories** - Payment transaction logs
+- **discounts** - Discount management
+- **ratings** - Product ratings
+- **comments** - Product comments and reviews
+- **contacts** - Customer contact messages
+- **action_logs** - System activity audit trail
+
+## User Roles & Permissions
+
+### Super Admin
+- All admin permissions
+- Create/delete admin accounts
+- Manage users
+
+### Admin
+- Manage categories (create, update, delete)
+- Manage products (create, update, delete)
+- Manage orders (view, confirm, reject, change status)
+- Manage payment methods
+- Edit profile and change password
+
+### User/Customer
+- Browse products
+- Add to cart and checkout
+- Place orders and view order history
+- Rate and comment on products
+- Manage profile
+- Submit contact messages
+
+## Routes Structure
+
+### Admin Routes (`/admin/*`)
+- Requires `admin` middleware
+- `/admin/home` - Admin dashboard
+- `/admin/category/*` - Category management
+- `/admin/product/*` - Product management
+- `/admin/order/*` - Order management
+- `/admin/profile/*` - Admin profile & user management
+
+### Customer Routes (`/customer/*`)
+- Requires `user` middleware
+- `/customer/home` - Customer homepage
+- `/customer/product/detail/{id}` - Product details
+- `/customer/cart` - Shopping cart
+- `/customer/orderlist` - Order history
+- `/customer/profile/*` - Customer profile management
+
+### API Routes (`/api/*`)
+- `/api/user` - Get authenticated user (Sanctum protected)
+- `/api/product/list` - Get product list
+- `/api/delete` - Delete resource
+
+## Development
+
+### Running in Development Mode
+
+```bash
+# Terminal 1: Start Laravel server
+php artisan serve
+
+# Terminal 2: Start Vite dev server for hot reload
+npm run dev
+```
+
+### Code Formatting
+
+```bash
+# Format code using Laravel Pint
+./vendor/bin/pint
+```
+
+## Testing
+
+```bash
+# Run all tests
+php artisan test
+```
+
+## Deployment
+
+This project includes configuration files for: 
+
+- **Docker** - `dockerfile`
+- **Vercel** - `vercel.json`
+- **Netlify** - `netlify.toml`
+
+### Production Checklist
+
+- [ ] Set `APP_ENV=production` in `.env`
+- [ ] Set `APP_DEBUG=false` in `.env`
+- [ ] Configure database credentials
+- [ ] Set up SSL certificate
+- [ ] Configure social login credentials
+- [ ] Run `php artisan config:cache`
+- [ ] Run `php artisan route:cache`
+- [ ] Run `php artisan view:cache`
+- [ ] Build assets:  `npm run build`
+
+## Security Features
+
+- CSRF protection on all forms
+- Password hashing with bcrypt
+- Role-based middleware protection
+- Sanctum API authentication
+- XSS protection
+- SQL injection prevention through Eloquent ORM
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is private and proprietary. 
+
+---
+
+**Laravel Version:** 11.9  
+**PHP Version:** 8.2+
