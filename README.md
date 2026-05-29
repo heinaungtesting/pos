@@ -4,8 +4,9 @@ A Point of Sale (POS) system built with Laravel framework for managing sales, in
 
 ## About This Project
 
-This is a web-based Point of Sale application designed to help businesses manage their sales operations, inventory, and customer transactions efficiently. 
-
+This is a web-based Point of Sale application designed to help businesses manage their sales operations, inventory, and customer transactions efficiently.
+## Language
+**English** | [**日本語**](./README.ja.md)
 ## Tech Stack
 
 - **Framework:** Laravel 11.9 (PHP 8.2+)
