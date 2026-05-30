@@ -5,8 +5,90 @@ A Point of Sale (POS) system built with Laravel framework for managing sales, in
 ## About This Project
 
 This is a web-based Point of Sale application designed to help businesses manage their sales operations, inventory, and customer transactions efficiently.
+
 ## Language
+
 **English** | [**日本語**](./README.ja.md)
+
+## 📄 Portfolio Description (For Screening)
+
+### Product Name
+
+POS System
+
+### Development Period
+
+Start date: October 16, 2024  
+End date: December 16, 2025
+
+### Purpose / Background
+
+POS System is a Laravel application built with the image of an online shop and store management.
+
+I started this project because I wanted to create a system for my family that would allow them to manage and sell products online. The goal was to let my family register products and check orders, while customers could browse and purchase products.
+
+However, in Myanmar, depending on the region, internet/Wi‑Fi can be unstable and power outages are frequent, so it was difficult to move this system into real-world operation quickly. Even so, through this project I was able to gain experience building a web application while thinking about the features needed for actual stores and online shops.
+
+The main purpose of this project was to learn how to build business-system-like features with Laravel, such as product management, order management, cart, payment, and user management. In addition to building screens, I also focused on learning database design, authentication, authorization, and how to handle data securely.
+
+### Key Features
+
+- Separate screens by role (Admin / Customer)
+- Product category management
+- Product create/edit/delete
+- Product listing
+- Product search
+- Filters and sorting
+- Cart
+- Checkout
+- Order history
+- Payment method management
+- Payment history
+- Comments, ratings, and contact feature
+- Admin profile / account management
+
+### Technologies Used
+
+- Laravel
+- PHP
+- Blade
+- Tailwind CSS
+- Bootstrap
+- jQuery
+- Laravel Breeze
+- Sanctum
+- Socialite
+- Vite
+- MySQL
+
+### My Responsibilities
+
+This was a personal project. I handled everything myself, including the admin screens, customer screens, product management, category management, cart, order & payment-related features, integrating templates across screens, and overall testing.
+
+### What I Worked Hard On
+
+The hardest part was building this while learning many things from scratch.
+
+At the beginning, there were many areas I didn’t understand well, such as Laravel routing, controllers, Blade templates, Eloquent, migrations, authentication, and authorization. In particular, database design—how to connect product, user, order, and payment data—was challenging.
+
+I also focused on separating features available to admins vs customers. Admins can manage products and orders, while customers can search for products, add them to the cart, and place orders.
+
+Because online shops handle user and order information, I learned how important it is to handle data securely. I implemented the system while studying authentication, roles/permissions, input forms, and the overall flow of storing data.
+
+During development I encountered many issues such as routing errors, database errors, broken layouts, and authentication-related problems. Each time, I read the error messages, checked official documentation and references, and fixed them step by step.
+
+Through this project, I learned not only how to write code, but also the importance of designing admin/customer screens and data flow while thinking about real users.
+
+### Future Improvements
+
+Once Myanmar’s internet and power situation becomes more stable, I would like to develop this system further into a more practical online shop.
+
+Also, since I aim to become an AI engineer, in the future I would like to integrate AI agents and MCP to build a more automated agentic app.
+
+For example, an admin could type natural-language requests such as “Show me the best-selling products this week,” “List products with low stock,” or “Create a description for a new product,” and the AI agent could query the database, summarize the necessary information, or generate product descriptions.
+
+From a technical perspective, I’d like to improve route/controller naming, add more tests, stabilize payment processing, improve the README, organize seed data, and strengthen security.
+
 ## Tech Stack
 
 - **Framework:** Laravel 11.9 (PHP 8.2+)
